@@ -11,7 +11,7 @@ body { -ms-overflow-style: none; } /* IE and Edge */
 body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
 body {margin:0;}
 
-canvas{
+.notouch {
   touch-action:none;
 }
 .enter{
@@ -79,7 +79,8 @@ var counter = 0;
 var speed = 0.01;
 
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  canv = createCanvas(windowWidth,windowHeight);
+  canv.addClass('notouch');
   background(100,100,100);
   angleMode(DEGREES);
   noLoop();
