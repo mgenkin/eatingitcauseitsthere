@@ -1,5 +1,225 @@
 <!doctype html>
 <html>
+  <head>
+    <link rel="icon" href="images/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .left, .midleft, .midright, .right {
+        /* padding: 20px; */
+        float: left;
+        width: 25%; /* The width is 20%, by default */
+        text-shadow: 2px 2px black;
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        margin: 0px 0px 0px 0px;
+        border-radius: 2%;
+        border: 2px solid white;
+      }
+
+      .left:hover, .midleft:hover, .midright:hover, .right:hover{
+        border: 2px solid #d1b784;
+      }
+
+
+      .left {
+        background-color: #2196f3;
+        background-image: url("https://i.ibb.co/S3jkzTk/Screenshot-2024-10-29-at-2-42-26-PM.png");
+
+      }
+
+      .midleft {
+        
+        background-image: url("https://i.ibb.co/nbG3c64/Screenshot-2024-10-29-at-2-42-11-PM.png");
+        background-color: #dd0000;
+
+      }
+       .midright {
+        background-image: url("https://i.ibb.co/c8qCmwD/Screenshot-2024-10-29-at-2-42-21-PM.png");
+         
+        background-color: #dddd00;
+        /* padding: 20px; */
+      }
+
+      .right {
+        background-image: url("https://i.ibb.co/ccs2GXW/Screenshot-2024-10-29-at-2-42-01-PM.png");
+        
+        background-color: #04aa6d;
+
+      }
+      a:link {
+  color: #ffc99c;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #fca56a;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #fff59c;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #f78e4d;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+p {
+  text-align:center; 
+  vertical-align: middle;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  max-width:100%;
+  margin:auto;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+    flex: 50%;
+    max-width: 50%;
+  padding: 0 4px;
+}
+
+.cell {
+  margin-top: 8px;scoring copy
+  vertical-align: middle;
+  width: 100%;
+  border: 1px solid #d1b784;
+  aspect-ratio:1.0;
+}
+
+./*cell img{
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}*/
+
+iframe {
+  width:100%;
+}
+
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+          .left,
+        .midleft,
+        .midright,
+        .right {
+          width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+        }
+          .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+
+}
+
+
+/* Respons/**/
+      
+@media screen and (max-width: 750px) {
+          .left,
+        .midleft,
+        .midright,
+        .right {
+          width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+        }
+
+    </style>
+  </head>
+  <body style="background-color:black;color:white;">
+  
+  
+    <picture>
+      <source srcset="images/square_banner.JPG" media="(max-width: 750px)" />
+      <source srcset="images/wide_banner.jpeg" media="(max-width: 1500px)" />
+      <source srcset="images/square_banner.JPG" />
+      <img src="images/square_banner.JPG" alt="Matt Genkin's Website" style="width:100%;image-rendering:high-quality;margin:0;" />
+    </picture>
+
+
+    <a href="about.html">
+    <div class="left">
+      <p>About/Contact</p>
+    </div></a>
+
+<a href="music.html">
+    <div class="midleft">
+      <p>Music</p>
+    </div></a>
+
+    <a href="scoring.html">
+    <div class="midright">
+      <p>Scoring</p>
+    </div></a>
+
+    <a href="projects.html">
+    <div class="right">
+      <p>Other Projects</p>
+    </div></a>
+
+
+
+
+      <!-- <div style="max-width:800px; display:block; margin:auto; padding:400px;"> -->
+        <p style="color:black;"> .</p>
+        <div >
+        <p style="font-size:3vh; padding-top:5vh; ">
+          I love scoring movies and games.  I've mostly worked with electronically produced or self-recorded scores because it's really fun, cheap, and convenient.  I've also enjoyed writing for ensembled. All of my work so far has been in a DIY environment.  This page has a few examples of music I've made to picture - I've also made lots of other music, which you can check out on my music page.
+        </p>
+      </div>
+      
+
+      <div class="row">
+  <div class="column" style="">
+    <div class="cell" >
+      <iframe src="https://www.youtube.com/embed/3b6d4k0xavk?rel=0" style="width:100%; height:100%;" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen></iframe>
+      <p> This is a spec score for the game Elengard:Ascension that I made for the Indie Game Music Contest.  It's a first draft of an idea.  The only recorded instrument is clarinet, the rest are VSTs.</p>
+    </div>
+
+    <div class="cell" >
+      <iframe src="https://www.youtube.com/embed/qnz3-5u3qlc?rel=0" style="width:100%; height:100%;" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen></iframe>
+      <p> June Wyoming is an indie short made for a 48hr film festival in 2023.  My score for it includes a theme song, a cover of a pop song, and some more tension-building sounds. </p>
+    </div>
+
+  </div>
+
+  <div class="column">
+    <div class="cell" >
+      <iframe src="https://www.youtube.com/embed/zrbEDa8rW8Y?rel=0" style="width:100%; height:100%;" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen></iframe>
+      <p> Inventing Denmark is a comedy sketch made for YouTube group Town Talk. The story is very bizarre and the score tries its best to enrich that.</p>
+    </div>
+
+    <div class="cell" >
+      <iframe src="https://www.youtube.com/embed/ZdiIUAFg-Go?rel=0" style="width:100%; height:100%;" title="" frameBorder="0"   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullScreen></iframe>
+      <p> Legals is a stop motion animation I made & scored just for fun with my friend Ledah Finck.  The score is mostly electronics and processed clarinet, but also includes an original song.</p>
+    </div>
+</div>
+
+
+      </body>
+    </html>
+  </body>
+</html>
+
+
+
+<!-- <!doctype html>
+<html>
 <head>
 <title>Matt Genkin's Webpage</title>
 <meta name="description" content="Matt Genkin's Artist Page">
@@ -51,4 +271,4 @@ And I scored this game for the 2024 Indie Music Game Contest:
 </p>
 
 </body>
-</html>
+</html> -->

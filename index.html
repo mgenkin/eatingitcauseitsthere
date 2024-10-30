@@ -4,62 +4,141 @@
 <title>Matt Genkin's Webpage</title>
 <meta name="description" content="Matt Genkin's Artist Page">
 <meta name="keywords" content="art">
+<script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script>
+<style>
+html { scrollbar-width: none; } /* Firefox */
+body { -ms-overflow-style: none; } /* IE and Edge */
+body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
+body {margin:0;}
+
+.enter{
+  position:absolute;
+  max-width: 200px;
+  max-height: 100px;
+  left:50%;
+  top: 50%;
+  -ms-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+/*  -ms-transform: ;
+  transform: translateX(-50%);*/
+  background-color:rgb(255 230 100 / .6);
+  margin:auto;
+  font-size:30px;
+  padding:20px;
+  border-radius: 40px;
+  border: 2px solid rgb(255 230 100);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke: 1.5px black;
+}
+.link{
+  position:absolute; 
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+
+  z-index: 1;
+
+  /* fixes overlap error in IE7/8, 
+     make sure you have an empty gif */
+  background-image: url('empty.gif');
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.11.0/lib/p5.min.js"></script>
 </head>
+
 <body>
 
-<p>Welcome to Eating It Cause It's There, a thing that you probably shouldn't do, but it's okay to do it sometimes, I sometimes do it. It's also the name of my artist website.</p>
 
-<p>Here's some other stuff I do:</p>
-
+<a href="about.html">
+<div class="enter">
 <p>
-I've been getting into <a href = "https://eatingitcauseitsthere.com/performance-art.html">performance art</a>,
+<b>Enter Website</b>
+<span class="link"></span>
 </p>
+</div>
+</a>
 
-<p>
-Most notably with Rhymes With Orange, an absurdist theatre/existential play group that you should check out:  <a href = "https://www.rhymeswithorange.xyz/">http://rhymeswithorange.xyz/</a>
-</p>
+<script>
+function preload(){
+
+  // window.setInterval(colorChange, 1000);
+}
+
+var linecolor = 0;
+
+var mousePresent = true;
+
+var counter = 0;
+
+var speed = 0.01;
+
+function setup() {
+  createCanvas(windowWidth,windowHeight);
+  background(100,100,100);
+  angleMode(DEGREES);
+  noLoop();
+}
+
+function draw() {
+  background(100,100,100,10);
   
-<p>
-I've been working on some singer-songwriter stuff <a href = "https://mattgenkin.bandcamp.com/album/honestly-garbage">https://mattgenkin.bandcamp.com/album/honestly-garbage</a>
-</p>
 
+  counter += 1;
+  if(counter/speed == 360){
+    counter = 0;
+  }
+
+  loop();
+
+}
+
+function mouseDragged() {
+  mouseMoved();
+}
+
+function mouseMoved() {
+  stroke(linecolor);
+
+  if(mousePresent && (mouseX!=0 && mouseY!=0)){
+    // coefA = Math.max(Math.sin(speed*counter), 0.0)
+    // coefB = Math.max(-Math.sin(speed*counter), 0.0)
+    coef = Math.sin(speed*counter)
+
+    line(mouseX, mouseY, 
+      // (height-mouseY)*(coefA + (1.0-coefA)*(width/height)), 
+      // (width-mouseX)*(coefB + (1.0-coefB)*(height/width)));
+      (height-mouseY)*((1.0+.2*coef)*(width/height)), 
+      (width-mouseX)*((1.0-.2*coef)**(height/width)));
+  }
+
+}
+
+
+
+
+function mouseExited() {
+  mousePresent = false;
+}
+
+function mouseEntered() {
+  mousePresent = true;
+}
+
+function mousePressed(){
+    colorChange();
+  }
+
+function colorChange(){
+    linecolor = 255-linecolor;
+}
   
-<p>
-Devuroasts and I have a podcast called Hello If Anything that's between ASMR and improv comedy:  <a href = "https://www.patreon.com/collection/697994">patreon.com/HelloIfAnything</a>
-</p>
-  
-<p>
-You Want Milk is a rock band I've been in for a while: <a href = "http://youwantmilk.bandcamp.com/">http://youwantmilk.bandcamp.com/</a>
-  I'm a little more proud of this <a href="https://drive.google.com/file/d/1p9Pfr6ViweMElvvpbt9AgXYqk-HOlCyJ/view?usp=drive_link">unreleased song</a> than the stuff that's out there.
-</p>
-
-<p>
-Fitness Bread is a musical comedy duo I have with my sister: <a href = "https://www.youtube.com/watch?v=JeyBs1KZJHA">https://www.youtube.com/watch?v=JeyBs1KZJHA</a>
-</p>
-
-
-<p>
-My personal insta is <a href = "https://www.instagram.com/god_yes/">@god_yes</a> and these projects are at <a href = "https://www.instagram.com/rhymeswithorange_rmo/">@rhymeswithorange_rmo</a> <a href = "https://www.instagram.com/helloifanything/">@helloifanything</a> <a href = "https://www.instagram.com/you.want.milk/">@you.want.milk</a> <a href = "https://www.instagram.com/fit_ness_bread/">@fit_ness_bread </a>
-</p>
-
-<p>
-Some of them don't really have much documentation yet, but there's at least a little taste for each one!
-I'm also involved in organizing for <a href="https://www.jetlagfestival.com/">JetLAG</a> Festival, mostly booking bands.
-</p>
-
-<p>
-Plus some other miscellaneous stuff, I wrote a <a href="https://www.dropbox.com/scl/fo/3d2bgak8t7b5mrqlv02xz/AFZZfEsInxPuEEhihD7wt60/Bergamot%20Composers%20Concert?preview=Bergamot+-+Matt.wav&rlkey=ar8wb3fyw4t8r3xv0msbe6mnl&subfolder_nav_tracking=1&st=hibgbjub&dl=0">string quartet piece</a> one time that Bergamot Quartet performed and I made this <a href="https://youtu.be/ZdiIUAFg-Go">stop motion</a> with my friend Ledah.
-</p>
-
-  <p>
-I've also collected documentation of some older work <a href="https://eatingitcauseitsthere.com/older-work.html"> here</a>.
-  </p>
-<p>
-Here's a <a href="https://eatingitcauseitsthere.com/images/creepy-pic.jpeg">weird-lookin pic</a> of me next to a strange stuffed animal on the street at night.
-</p>
-  
-<p>Email me if you wanna talk about anything or hang out: <script type="text/javascript">document.write(`<a href="mailto:&#103;&#101;&#110;&#107;&#105;&#110;&#46;&#109;&#97;&#116;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" rel="nofollow noopener noreferrer">&#103;&#101;&#110;&#107;&#105;&#110;&#46;&#109;&#97;&#116;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>`);</script>
-</p>
-
+function windowResized() {
+   resizeCanvas(windowWidth, windowHeight);
+  background(100);
+}
+</script>
 </body>
 </html>
