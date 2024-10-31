@@ -67,7 +67,7 @@ var counter = 0;
 
 var speed = 0.01;
 
-let img;
+let img, img2;
 
 var gyroPresent = false;
 window.addEventListener("devicemotion", function(event){
@@ -82,6 +82,7 @@ let permissionGranted = false;
 function setup() {
 
   img = loadImage('images/water.jpg');
+  img2 = loadImage('images/water_alpha.png');
 
   canv = createCanvas(windowWidth,windowHeight);
   canv.addClass('notouch');
@@ -116,7 +117,7 @@ function setup() {
 }
 
 function draw() {
-  background(img,8);
+  background(img2);
   strokeWeight(2);
   
   // if (!permissionGranted) return;
