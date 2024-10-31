@@ -80,12 +80,12 @@ function setup() {
   canv.addClass('notouch');
   cx = width/2;
   cy = height/2;
-  background(100,100,100);
+  // background(100,100,100);
   angleMode(DEGREES);
   noLoop();
 
   if (typeof(DeviceOrientationEvent) !== 'undefined' && typeof(DeviceOrientationEvent.requestPermission) === 'function') {
-    // ios 13 device
+    text("ios 13 device", 100, 100);
     
     DeviceOrientationEvent.requestPermission()
       .catch(() => {
@@ -103,13 +103,13 @@ function setup() {
   } else {
     // non ios 13 device
     textSize(48);
-    // text("non ios 13 device", 100, 100);
+    text("non ios 13 device", 100, 100);
     permissionGranted = true;
   }
 }
 
 function draw() {
-  background(100,100,100,10);
+  // background(100,100,100,10);
   
   // if (!permissionGranted) return;
   
@@ -138,6 +138,7 @@ function draw() {
 }
 
 function mouseDragged() {
+  colorChange();
   mouseMoved();
 }
 
