@@ -67,6 +67,8 @@ var counter = 0;
 
 var speed = 0.01;
 
+let img;
+
 var gyroPresent = false;
 window.addEventListener("devicemotion", function(event){
     if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
@@ -78,11 +80,14 @@ let cx, cy;
 let permissionGranted = false;
 
 function setup() {
+
+  img = loadImage('images/water.jpg');
+
   canv = createCanvas(windowWidth,windowHeight);
   canv.addClass('notouch');
   cx = width/2;
   cy = height/2;
-  background(100,100,100);
+  background(img);
   angleMode(DEGREES);
   noLoop();
 
@@ -111,7 +116,8 @@ function setup() {
 }
 
 function draw() {
-  background(100,100,100,10);
+  background(img,8);
+  strokeWeight(2);
   
   // if (!permissionGranted) return;
   
