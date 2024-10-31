@@ -120,7 +120,7 @@ function draw() {
     counter = 0;
   }
 
-  if(permissionGranted && gyroPresent){
+  if(permissionGranted){
       // rotationX, rotationY
     const dx = constrain(rotationY, -3, 3);
     const dy = constrain(rotationX, -3, 3);
