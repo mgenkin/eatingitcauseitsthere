@@ -75,6 +75,8 @@ window.addEventListener("devicemotion", function(event){
 
 let cx, cy;
 
+let permissionGranted = false;
+
 function setup() {
   canv = createCanvas(windowWidth,windowHeight);
   canv.addClass('notouch');
@@ -138,7 +140,6 @@ function draw() {
 }
 
 function mouseDragged() {
-  colorChange();
   mouseMoved();
 }
 
