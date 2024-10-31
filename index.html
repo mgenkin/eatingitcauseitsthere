@@ -82,12 +82,12 @@ function setup() {
   canv.addClass('notouch');
   cx = width/2;
   cy = height/2;
-  // background(100,100,100);
+  background(100,100,100);
   angleMode(DEGREES);
   noLoop();
 
   if (typeof(DeviceOrientationEvent) !== 'undefined' && typeof(DeviceOrientationEvent.requestPermission) === 'function') {
-    text("ios 13 device", 100, 100);
+    // text("ios 13 device", 100, 100);
     
     DeviceOrientationEvent.requestPermission()
       .catch(() => {
@@ -105,13 +105,13 @@ function setup() {
   } else {
     // non ios 13 device
     textSize(48);
-    text("non ios 13 device", 100, 100);
+    // text("non ios 13 device", 100, 100);
     permissionGranted = true;
   }
 }
 
 function draw() {
-  // background(100,100,100,10);
+  background(100,100,100,10);
   
   // if (!permissionGranted) return;
   
@@ -122,7 +122,7 @@ function draw() {
     counter = 0;
   }
 
-  if(permissionGranted){
+  if(permissionGranted && gyroPresent){
       // rotationX, rotationY
     const dx = constrain(rotationY, -3, 3);
     const dy = constrain(rotationX, -3, 3);
@@ -132,7 +132,7 @@ function draw() {
     cy = constrain(cy, 0, height);
     // use gyroscope instead of mouse
     doTheLine(cx,cy);
-    text("cx"+cx+" cy"+cy, width/3, height/3);
+    // text("cx"+cx+" cy"+cy, width/3, height/3);
   }
 
   loop();
@@ -144,25 +144,23 @@ function mouseDragged() {
 }
 
 function mouseMoved() {
-  doTheLine(mouseX, mouseY);
-
+  if(mousePresent && (mouseX!=0 && mouseY!=0)){
+    // coefA = Math.max(Math.sin(speed*counter), 0.0)
+    // coefB = Math.max(-Math.sin(speed*counter), 0.0)
+    
+    doTheLine(mouseX, mouseY);
+  }
 }
 
 function doTheLine(x, y){
   stroke(linecolor);
-
-  if(mousePresent && (mouseX!=0 && mouseY!=0)){
-    // coefA = Math.max(Math.sin(speed*counter), 0.0)
-    // coefB = Math.max(-Math.sin(speed*counter), 0.0)
-    coef = Math.sin(speed*counter)
-
-    line(mouseX, mouseY, 
-      // (height-mouseY)*(coefA + (1.0-coefA)*(width/height)), 
-      // (width-mouseX)*(coefB + (1.0-coefB)*(height/width)));
-      (height-mouseY)*((1.0+.2*coef)*(width/height)), 
-      (width-mouseX)*((1.0-.2*coef)**(height/width)));
+  coef = Math.sin(speed*counter);
+  line(x, y, 
+    // (height-mouseY)*(coefA + (1.0-coefA)*(width/height)), 
+    // (width-mouseX)*(coefB + (1.0-coefB)*(height/width)));
+    (height-y)*((1.0+.2*coef)*(width/height)), 
+    (width-x)*((1.0-.2*coef)**(height/width)));
   }
-}
 
 function requestAccess() {
   DeviceOrientationEvent.requestPermission()
