@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
 <head>
+  <title>Matt Genkin's Website</title>
+<link rel="icon" href="images/icon.png">
 <title>Matt Genkin's Webpage</title>
 <meta name="description" content="Matt Genkin's Artist Page">
 <meta name="keywords" content="art">
@@ -78,21 +80,70 @@ var counter = 0;
 
 var speed = 0.01;
 
+var gyroPresent = false;
+window.addEventListener("devicemotion", function(event){
+    if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
+        gyroPresent = true;
+});
+
+let cx, cy;
+
 function setup() {
   canv = createCanvas(windowWidth,windowHeight);
   canv.addClass('notouch');
+  cx = width/2;
+  cy = height/2;
   background(100,100,100);
   angleMode(DEGREES);
   noLoop();
+
+  if (typeof(DeviceOrientationEvent) !== 'undefined' && typeof(DeviceOrientationEvent.requestPermission) === 'function') {
+    // ios 13 device
+    
+    DeviceOrientationEvent.requestPermission()
+      .catch(() => {
+        // show permission dialog only the first time
+        let button = createButton("click to allow access to sensors");
+        button.style("font-size", "24px");
+        button.center();
+        button.mousePressed( requestAccess );
+        throw error;
+      })
+      .then(() => {
+        // on any subsequent visits
+        permissionGranted = true;
+      })
+  } else {
+    // non ios 13 device
+    textSize(48);
+    // text("non ios 13 device", 100, 100);
+    permissionGranted = true;
+  }
 }
 
 function draw() {
   background(100,100,100,10);
   
+  if (!permissionGranted) return;
+  
+  // background(255);
+  
+  // rotationX, rotationY
+  const dx = constrain(rotationY, -3, 3);
+  const dy = constrain(rotationX, -3, 3);
+  cx += dx*2;
+  cy += dy*2;
+  cx = constrain(cx, 0, width);
+  cy = constrain(cy, 0, height);
 
   counter += 1;
   if(counter/speed == 360){
     counter = 0;
+  }
+
+  if(permissionGranted && gyroPresent){
+    // use gyroscope instead of mouse
+    doTheLine(cx,cy)
   }
 
   loop();
@@ -104,6 +155,11 @@ function mouseDragged() {
 }
 
 function mouseMoved() {
+  doTheLine(mouseX, mouseY);
+
+}
+
+function doTheLine(x, y){
   stroke(linecolor);
 
   if(mousePresent && (mouseX!=0 && mouseY!=0)){
@@ -117,10 +173,21 @@ function mouseMoved() {
       (height-mouseY)*((1.0+.2*coef)*(width/height)), 
       (width-mouseX)*((1.0-.2*coef)**(height/width)));
   }
-
 }
 
-
+function requestAccess() {
+  DeviceOrientationEvent.requestPermission()
+    .then(response => {
+      if (response == 'granted') {
+        permissionGranted = true;
+      } else {
+        permissionGranted = false;
+      }
+    })
+  .catch(console.error);
+  
+  this.remove();
+}
 
 
 function mouseExited() {
