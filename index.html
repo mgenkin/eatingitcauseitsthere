@@ -69,15 +69,7 @@ var speed = 0.01;
 
 let img, img2;
 
-var gyroPresent = false;
-window.addEventListener("devicemotion", function(event){
-    if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
-        gyroPresent = true;
-});
-
 let cx, cy;
-
-let permissionGranted = false;
 
 function setup() {
 
@@ -92,28 +84,11 @@ function setup() {
   angleMode(DEGREES);
   noLoop();
 
-  if (typeof(DeviceOrientationEvent) !== 'undefined' && typeof(DeviceOrientationEvent.requestPermission) === 'function') {
-    // text("ios 13 device", 100, 100);
-    
-    DeviceOrientationEvent.requestPermission()
-      .catch(() => {
-        // show permission dialog only the first time
-        let button = createButton("allow access to gyroscope for my cute landing page");
-        button.style("font-size", "24px");
-        button.center();
-        button.mousePressed( requestAccess );
-        throw error;
-      })
-      .then(() => {
-        // on any subsequent visits
-        permissionGranted = true;
-      })
-  } else {
-    // non ios 13 device
-    textSize(48);
-    // text("non ios 13 device", 100, 100);
-    permissionGranted = true;
-  }
+
+  // non ios 13 device
+  textSize(48);
+  // text("non ios 13 device", 100, 100);
+  permissionGranted = true;
 }
 
 function draw() {
@@ -131,18 +106,18 @@ function draw() {
     counter = 0;
   }
 
-  if(permissionGranted && gyroPresent){
-      // rotationX, rotationY
-    const dx = constrain(rotationY, -3, 3);
-    const dy = constrain(rotationX, -3, 3);
-    cx += dx*2;
-    cy += dy*2;
-    cx = constrain(cx, 0, width);
-    cy = constrain(cy, 0, height);
-    // use gyroscope instead of mouse
-    doTheLine(cx,cy);
-    // text("cx"+cx+" cy"+cy, width/3, height/3);
-  }
+  // if(permissionGranted && gyroPresent){
+  //     // rotationX, rotationY
+  //   const dx = constrain(rotationY, -3, 3);
+  //   const dy = constrain(rotationX, -3, 3);
+  //   cx += dx*2;
+  //   cy += dy*2;
+  //   cx = constrain(cx, 0, width);
+  //   cy = constrain(cy, 0, height);
+  //   // use gyroscope instead of mouse
+  //   doTheLine(cx,cy);
+  //   // text("cx"+cx+" cy"+cy, width/3, height/3);
+  // }
 
   loop();
 
@@ -170,20 +145,6 @@ function doTheLine(x, y){
     (height-y)*((1.0+.2*coef)*(width/height)), 
     (width-x)*((1.0-.2*coef)**(height/width)));
   }
-
-function requestAccess() {
-  DeviceOrientationEvent.requestPermission()
-    .then(response => {
-      if (response == 'granted') {
-        permissionGranted = true;
-      } else {
-        permissionGranted = false;
-      }
-    })
-  .catch(console.error);
-  
-  this.remove();
-}
 
 
 function mouseExited() {
