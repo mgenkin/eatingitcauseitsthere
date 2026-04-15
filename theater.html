@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Matt Genkin's Theater Projects</title>
+    <link rel="icon" href="images/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .left, .midleft, .midright, .right {
+        /* padding: 20px; */
+        float: left;
+        width: 25%; /* The width is 20%, by default */
+        text-shadow: 2px 2px black;
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        margin: 0px 0px 0px 0px;
+        border-radius: 2%;
+        border: 2px solid white;
+      }
+
+      .left:hover, .midleft:hover, .midright:hover, .right:hover{
+        border: 2px solid #d1b784;
+      }
+
+
+      .left {
+        background-color: darkgrey;
+        background-image: url("images/leftimg.png");
+
+      }
+
+      .midleft {
+        
+        background-image: url("images/midleftimg.png");
+        background-color: darkgrey;
+
+      }
+       .midright {
+        background-image: url("images/midrightimg.png");
+         
+        background-color: darkgrey;
+        /* padding: 20px; */
+      }
+
+      .right {
+        background-image: url("images/rightimg.png");
+        
+        background-color: darkgrey;
+
+      }
+      a:link {
+  color: #ffc99c;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #fca56a;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #fff59c;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #f78e4d;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+p {
+  text-align:center; 
+  vertical-align: middle;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  max-width:100%;
+  margin:auto;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+    flex: 50%;
+    max-width: 50%;
+  padding: 0 4px;
+}
+
+.cell {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+  border: 1px solid #d1b784;
+  aspect-ratio:1.0;
+}
+
+./*cell img{
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}*/
+
+iframe {
+  width:100%;
+}
+
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+          .left,
+        .midleft,
+        .midright,
+        .right {
+          width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+        }
+          .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+
+}
+
+
+/* Respons/**/
+      
+@media screen and (max-width: 750px) {
+          .left,
+        .midleft,
+        .midright,
+        .right {
+          width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+        }
+
+    </style>
+  </head>
+  <body style="background-color:black;color:white;">
+  
+  
+    <picture>
+      <source srcset="images/square_banner.JPG" media="(max-width: 750px)" />
+      <source srcset="images/wide_banner.jpeg" media="(max-width: 1500px)" />
+      <source srcset="images/square_banner.JPG" />
+      <img src="images/square_banner.JPG" alt="Matt Genkin's Website" style="width:100%;image-rendering:high-quality;margin:0;" />
+    </picture>
+
+
+    <a href="about.html">
+    <div class="left">
+      <p>About/Contact</p>
+    </div></a>
+
+<a href="theater.html">
+    <div class="midleft">
+      <p>Theater</p>
+    </div></a>
+
+    <a href="music.html">
+    <div class="midright">
+      <p>Music</p>
+    </div></a>
+
+    <a href="projects.html">
+    <div class="right">
+      <p>Other Projects</p>
+    </div></a>
+
+
+
+
+      <!-- <div style="max-width:800px; display:block; margin:auto; padding:400px;"> -->
+        <p style="color:black;"> .</p>
+        <div >
+        <p style="font-size:3vh; padding-top:5vh; ">
+          I like making theatrical work that is fun and surprising, especially devised theater and clowning. I'm also interested in traditional theater, but don't have much experience with it. I love making music for theater as well.
+        </p>
+      </div>
+      
+
+  <div class="row">
+  <div class="column" style="">
+
+    <div class="cell" >
+      <a href="https://rmo.news/"><img style="width:100%; height:100%;" src="images/rmo.png"></a>
+      <p> Rhymes With Orange is an experimental collective I've been in since 2020.  We've performed at festivals, theaters, living rooms, weddings, etc.  We mostly veer silly but also enjoy doing weird.</p>
+    </div>
+
+    <div class="cell" >
+      <a href="https://www.bricktheater.com/event/meaghan-robichaud-is-the-greatest-show-on-earth/2026-03-25/"><img style="width:100%; height:100%;" src="images/MRG-poster.jpeg"></a>
+      <p> I did background guitar and had a little stage time in Meaghan Robichaud is the Greatest Show on Earth, a bouffon show that brought me and many others immense joy.</p>
+    </div>
+
+
+
+  </div>
+
+  <div class="column">
+
+
+    <div class="cell" >
+      <a href="https://www.youtube.com/playlist?list=PLr5B3S94QvNcZ1NJfXXeIx_SCStlhFhhx"><img style="width:100%; height:100%;" src="images/idiot.png"></a>
+      <p> I've done several solo & group performances at the Idiot Hour, an NYC avant clown variety show hosted by Matthew Silver.</p>
+    </div>
+
+    <div class="cell" >
+      <a href="https://www.becountercurrent.com/post/t%C3%B6gal-a-devised-theatre-work-in-progress"><img style="width:100%; height:100%;" src="images/togal.png"></a>
+      <p> I was one of six deviser/actors in Togal, a performance put on by Counter Current Collective in mid-coast Maine based on teachings from Tibetan Buddhism.</p>
+    </div>
+
+</div>
+
+
+      </body>
+    </html>
+  </body>
+</html>
+
