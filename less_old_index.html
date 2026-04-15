@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+  <title>Matt Genkin's Website</title>
+<link rel="icon" href="images/icon.png">
+<title>Matt Genkin's Webpage</title>
+<meta name="description" content="Matt Genkin's Artist Page">
+<meta name="keywords" content="art">
+<script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script>
+<style>
+html { scrollbar-width: none; } /* Firefox */
+body { -ms-overflow-style: none; } /* IE and Edge */
+body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
+body {margin:0;}
+
+.notouch {
+  touch-action:none;
+}
+.enter{
+  position:absolute;
+/*  max-width: 200px;
+  max-height: 150px;*/
+  left:50%;
+  top: 50%;
+  -ms-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+/*  -ms-transform: ;
+  transform: translateX(-50%);*/
+  background-color:rgb(255 230 100 / .6);
+  margin:auto;
+  font-size:50px;
+  padding:0px;
+  border-radius: 40px;
+  border: 2px solid rgb(255 230 100);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke: 1.5px black;
+}
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.11.0/lib/p5.min.js"></script>
+</head>
+
+<body>
+
+
+<a href="about.html">
+<div class="enter">
+  <p>
+    <b>Enter Website</b>
+  </p>
+</div>
+</a>
+
+<script>
+function preload(){
+
+  // window.setInterval(colorChange, 1000);
+}
+
+var linecolor = 255;
+
+var mousePresent = true;
+
+var counter = 0;
+
+var speed = 0.01;
+
+let img, img2;
+
+let cx, cy;
+
+function setup() {
+
+  img = loadImage('images/water.jpg');
+  img2 = loadImage('images/water_alpha.png');
+
+  canv = createCanvas(windowWidth,windowHeight);
+  canv.addClass('notouch');
+  cx = width/2;
+  cy = height/2;
+  // background(img);
+  angleMode(DEGREES);
+  noLoop();
+
+
+  // non ios 13 device
+  textSize(48);
+  // text("non ios 13 device", 100, 100);
+  permissionGranted = true;
+}
+
+function draw() {
+
+  // tint(255, 80);
+  // image(img, 0, 0);
+  // noTint();
+  
+  // if (!permissionGranted) return;
+  
+  background(100,100,100,10);
+  
+  counter += 1;
+  if(counter/speed == 360){
+    counter = 0;
+  }
+
+  // if(permissionGranted && gyroPresent){
+  //     // rotationX, rotationY
+  //   const dx = constrain(rotationY, -3, 3);
+  //   const dy = constrain(rotationX, -3, 3);
+  //   cx += dx*2;
+  //   cy += dy*2;
+  //   cx = constrain(cx, 0, width);
+  //   cy = constrain(cy, 0, height);
+  //   // use gyroscope instead of mouse
+  //   doTheLine(cx,cy);
+  //   // text("cx"+cx+" cy"+cy, width/3, height/3);
+  // }
+
+  loop();
+
+}
+
+function mouseDragged() {
+  mouseMoved();
+}
+
+function mouseMoved() {
+  if(mousePresent && (mouseX!=0 && mouseY!=0)){
+    // coefA = Math.max(Math.sin(speed*counter), 0.0)
+    // coefB = Math.max(-Math.sin(speed*counter), 0.0)
+    
+    doTheLine(mouseX, mouseY);
+  }
+}
+
+function doTheLine(x, y){
+  stroke(linecolor);
+  coef = Math.sin(speed*counter);
+  line(x, y, 
+    // (height-mouseY)*(coefA + (1.0-coefA)*(width/height)), 
+    // (width-mouseX)*(coefB + (1.0-coefB)*(height/width)));
+    (height-y)*((1.0+.2*coef)*(width/height)), 
+    (width-x)*((1.0-.2*coef)**(height/width)));
+  }
+
+
+function mouseExited() {
+  mousePresent = false;
+}
+
+function mouseEntered() {
+  mousePresent = true;
+}
+
+function mousePressed(){
+    colorChange();
+  }
+
+function colorChange(){
+    linecolor = 255-linecolor;
+}
+  
+function windowResized() {
+   resizeCanvas(windowWidth, windowHeight);
+  background(100);
+}
+</script>
+</body>
+</html>

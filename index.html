@@ -1,172 +1,145 @@
 <!doctype html>
 <html>
-<head>
-  <title>Matt Genkin's Website</title>
-<link rel="icon" href="images/icon.png">
-<title>Matt Genkin's Webpage</title>
-<meta name="description" content="Matt Genkin's Artist Page">
-<meta name="keywords" content="art">
-<script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.min.js"></script>
-<style>
-html { scrollbar-width: none; } /* Firefox */
-body { -ms-overflow-style: none; } /* IE and Edge */
-body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
-body {margin:0;}
+  <head>
+    <title>About Matt Genkin</title>
+    <link rel="icon" href="images/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-.notouch {
-  touch-action:none;
-}
-.enter{
-  position:absolute;
-/*  max-width: 200px;
-  max-height: 150px;*/
-  left:50%;
-  top: 50%;
-  -ms-transform: translateY(-50%) translateX(-50%);
-  transform: translateY(-50%) translateX(-50%);
-/*  -ms-transform: ;
-  transform: translateX(-50%);*/
-  background-color:rgb(255 230 100 / .6);
-  margin:auto;
-  font-size:50px;
-  padding:0px;
-  border-radius: 40px;
-  border: 2px solid rgb(255 230 100);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-  -webkit-text-stroke: 1.5px black;
-}
+      .left, .midleft, .midright, .right {
+        /* padding: 20px; */
+        float: left;
+        width: 25%; /* The width is 20%, by default */
+        text-shadow: 2px 2px black;
+        color: white;
+        font-size: 30px;
+        text-align: center;
+        margin: 0px 0px 0px 0px;
+        border-radius: 2%;
+        border: 2px solid white;
+      }
 
-</style>
-<script src="https://cdn.jsdelivr.net/npm/p5@1.11.0/lib/p5.min.js"></script>
-</head>
-
-<body>
+      .left:hover, .midleft:hover, .midright:hover, .right:hover{
+        border: 2px solid #d1b784;
+      }
 
 
-<a href="about.html">
-<div class="enter">
-  <p>
-    <b>Enter Website</b>
-  </p>
-</div>
-</a>
+      .left {
+        background-color: darkgrey;
+        background-image: url("images/leftimg.png");
 
-<script>
-function preload(){
+      }
 
-  // window.setInterval(colorChange, 1000);
-}
+      .midleft {
+        
+        background-image: url("images/midleftimg.png");
+        background-color: darkgrey;
 
-var linecolor = 255;
+      }
+       .midright {
+        background-image: url("images/midrightimg.png");
+         
+        background-color: darkgrey;
+        /* padding: 20px; */
+      }
 
-var mousePresent = true;
+      .right {
+        background-image: url("images/rightimg.png");
+        
+        background-color: darkgrey;
 
-var counter = 0;
-
-var speed = 0.01;
-
-let img, img2;
-
-let cx, cy;
-
-function setup() {
-
-  img = loadImage('images/water.jpg');
-  img2 = loadImage('images/water_alpha.png');
-
-  canv = createCanvas(windowWidth,windowHeight);
-  canv.addClass('notouch');
-  cx = width/2;
-  cy = height/2;
-  // background(img);
-  angleMode(DEGREES);
-  noLoop();
-
-
-  // non ios 13 device
-  textSize(48);
-  // text("non ios 13 device", 100, 100);
-  permissionGranted = true;
+      }
+      a:link {
+  color: #ffc99c;
+  background-color: transparent;
+  text-decoration: none;
 }
 
-function draw() {
+a:visited {
+  color: #fca56a;
+  background-color: transparent;
+  text-decoration: none;
+}
 
-  // tint(255, 80);
-  // image(img, 0, 0);
-  // noTint();
+a:hover {
+  color: #fff59c;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #f78e4d;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+p {
+  text-align:center; 
+  vertical-align: middle;
+}
+      
+@media screen and (max-width: 750px) {
+          .left,
+        .midleft,
+        .midright,
+        .right {
+          width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+        }
+
+    </style>
+  </head>
+  <body style="background-color:black;color:white;">
   
-  // if (!permissionGranted) return;
   
-  background(100,100,100,10);
-  
-  counter += 1;
-  if(counter/speed == 360){
-    counter = 0;
-  }
-
-  // if(permissionGranted && gyroPresent){
-  //     // rotationX, rotationY
-  //   const dx = constrain(rotationY, -3, 3);
-  //   const dy = constrain(rotationX, -3, 3);
-  //   cx += dx*2;
-  //   cy += dy*2;
-  //   cx = constrain(cx, 0, width);
-  //   cy = constrain(cy, 0, height);
-  //   // use gyroscope instead of mouse
-  //   doTheLine(cx,cy);
-  //   // text("cx"+cx+" cy"+cy, width/3, height/3);
-  // }
-
-  loop();
-
-}
-
-function mouseDragged() {
-  mouseMoved();
-}
-
-function mouseMoved() {
-  if(mousePresent && (mouseX!=0 && mouseY!=0)){
-    // coefA = Math.max(Math.sin(speed*counter), 0.0)
-    // coefB = Math.max(-Math.sin(speed*counter), 0.0)
-    
-    doTheLine(mouseX, mouseY);
-  }
-}
-
-function doTheLine(x, y){
-  stroke(linecolor);
-  coef = Math.sin(speed*counter);
-  line(x, y, 
-    // (height-mouseY)*(coefA + (1.0-coefA)*(width/height)), 
-    // (width-mouseX)*(coefB + (1.0-coefB)*(height/width)));
-    (height-y)*((1.0+.2*coef)*(width/height)), 
-    (width-x)*((1.0-.2*coef)**(height/width)));
-  }
+    <picture>
+      <source srcset="images/square_banner.JPG" media="(max-width: 750px)" />
+      <source srcset="images/wide_banner.jpeg" media="(max-width: 1500px)" />
+      <source srcset="images/square_banner.JPG" />
+      <img src="images/square_banner.JPG" alt="Matt Genkin's Website" style="width:100%;image-rendering:high-quality;margin:0;" />
+    </picture>
 
 
-function mouseExited() {
-  mousePresent = false;
-}
+    <a href="about.html">
+    <div class="left">
+      <p>About/Contact</p>
+    </div></a>
 
-function mouseEntered() {
-  mousePresent = true;
-}
+<a href="theater.html">
+    <div class="midleft">
+      <p>Theater</p>
+    </div></a>
 
-function mousePressed(){
-    colorChange();
-  }
+    <a href="music.html">
+    <div class="midright">
+      <p>Music</p>
+    </div></a>
 
-function colorChange(){
-    linecolor = 255-linecolor;
-}
-  
-function windowResized() {
-   resizeCanvas(windowWidth, windowHeight);
-  background(100);
-}
-</script>
-</body>
+    <a href="projects.html">
+    <div class="right">
+      <p>Other Projects</p>
+    </div></a>
+
+
+<!-- <div style="width:100%;image-rendering:high-quality;margin:0;border:10px solid #d1b784;"> -->
+
+      <!-- </div> -->
+      <p style="color:black;">.</p>
+        <div style="max-width:800px; display:block; margin:auto; padding:20px">
+        <p style="font-size:3vh;">
+          Hi! I'm a Brooklyn-based musician and theater artist. Thanks for visiting my website!  I like making stuff that is fun and surprising, I'm interested in clown and devised theater. As a musician I play jazz piano and songwriter guitar and produce electronic tracks for theater and film.  I have some solo acoustic music out as well. I love DIY and low-budget art and I put on shows in my basement in Bushwick. In my day jobs I work with kids as a substitute teacher, birthday clown, music facilitator, math team coach, etc.  I have a masters in math and a data science background that I no longer associate with. You can hit me up on Instagram <a href="https://www.instagram.com/god_yes/">@god_yes</a> or send me an email:  <script type="text/javascript">
+            document.write(
+              `<a href="mailto:&#103;&#101;&#110;&#107;&#105;&#110;&#46;&#109;&#97;&#116;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" rel="nofollow noopener noreferrer">&#103;&#101;&#110;&#107;&#105;&#110;&#46;&#109;&#97;&#116;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>`,
+            )
+          </script>.  Here's me in a fridge:
+        </p>
+      </div>
+
+              <img src="images/fridgepic.png" style="max-width:min(500px, 100%); display:block; margin:auto; border:2px solid #d1b784;">  
+
+      </body>
+    </html>
+  </body>
 </html>
